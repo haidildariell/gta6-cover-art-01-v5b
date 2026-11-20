@@ -1,0 +1,307 @@
+/* Vice Coast Cover Lab — dark neon-sunset editor theme. */
+@font-face {
+  font-family: 'Anton';
+  src: url('fonts/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Pacifico';
+  src: url('fonts/Pacifico-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #0d0716;
+  --bg-soft: #160b28;
+  --panel: #1c0f33;
+  --panel-edge: #3a2358;
+  --ink: #f5eefc;
+  --ink-dim: #b9a6d6;
+  --accent: #ff7a18;
+  --pink: #ff2e88;
+  --gold: #ffd166;
+  --violet: #b967ff;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  min-height: 100vh;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  background: linear-gradient(90deg, #1c0b33, #2b0f3d 55%, #160b28);
+  border-bottom: 2px solid transparent;
+  border-image: linear-gradient(90deg, var(--gold), var(--accent), var(--pink), var(--violet)) 1;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; }
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--gold), var(--accent) 45%, var(--pink));
+  color: #16041f;
+  font-family: 'Anton', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.brand .tagline {
+  margin: 0;
+  color: var(--ink-dim);
+  font-size: 13px;
+}
+
+.top-actions { display: flex; gap: 8px; }
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 18px;
+  padding: 18px 20px 28px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.preview-column { min-width: 0; }
+
+.preview-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  padding: 12px;
+  background: #070310;
+  border: 1px solid var(--panel-edge);
+  border-radius: var(--radius);
+}
+
+#coverCanvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  cursor: grab;
+  touch-action: none;
+}
+
+#coverCanvas:active { cursor: grabbing; }
+
+.hint {
+  margin: 10px 2px 0;
+  color: var(--ink-dim);
+  font-size: 13px;
+}
+
+.export-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.controls { display: flex; flex-direction: column; gap: 14px; }
+
+.panel {
+  padding: 14px;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-radius: var(--radius);
+}
+
+.panel h2 {
+  margin: 0 0 10px;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.panel label {
+  display: block;
+  margin: 8px 0;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.panel input[type="text"],
+.panel select {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 8px 10px;
+  background: var(--bg-soft);
+  color: var(--ink);
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.panel input[type="range"] {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  accent-color: var(--pink);
+}
+
+.upload-btn {
+  display: block;
+  padding: 10px 12px;
+  text-align: center;
+  background: linear-gradient(90deg, var(--accent), var(--pink));
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.status { color: var(--ink-dim); font-size: 13px; }
+
+.sample-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.sample-thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 0 6px;
+  background: var(--bg-soft);
+  color: var(--ink);
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  font-size: 11px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.sample-thumb:hover { border-color: var(--pink); }
+
+.sample-thumb img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.picker { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.pick {
+  padding: 8px 12px;
+  background: var(--bg-soft);
+  color: var(--ink);
+  border: 1px solid var(--panel-edge);
+  border-radius: 999px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.pick:hover { border-color: var(--violet); }
+
+.pick.active {
+  background: linear-gradient(90deg, var(--accent), var(--pink));
+  border-color: transparent;
+  color: #fff;
+  font-weight: 700;
+}
+
+.pick .swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  border-radius: 50%;
+  vertical-align: -1px;
+}
+
+.panel-title { font-weight: 700; margin-bottom: 6px; }
+
+.preset-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.btn {
+  padding: 9px 14px;
+  background: linear-gradient(90deg, var(--accent), var(--pink));
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn:disabled { opacity: 0.45; cursor: default; }
+
+.btn.secondary {
+  background: var(--bg-soft);
+  border: 1px solid var(--panel-edge);
+  color: var(--ink);
+}
+
+.btn.ghost {
+  background: transparent;
+  border: 1px solid var(--panel-edge);
+  color: var(--ink);
+}
+
+.btn.export { flex: 1 1 200px; }
+
+/* Shot mode: the cover canvas alone, full frame, for screenshots. */
+body.shot-mode { background: #0d0716; }
+body.shot-mode .topbar,
+body.shot-mode .controls,
+body.shot-mode .hint,
+body.shot-mode .export-row { display: none; }
+body.shot-mode .workspace {
+  display: block;
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+body.shot-mode .preview-box {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #0d0716;
+}
+body.shot-mode #coverCanvas { border-radius: 0; }
+
+@media (max-width: 900px) {
+  .workspace { grid-template-columns: 1fr; }
+}
